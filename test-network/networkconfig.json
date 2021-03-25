@@ -1,0 +1,36 @@
+{
+    "ordererType": "etcdedraft",
+    "orgs": [
+        {
+            "name": "Org1",
+            "domain": "org1.example.com",
+            "userNum": 1,
+            "peers": [
+                {
+                    "isOrderer": false,
+                    "ip": "172.38.50.211",
+                    "peerPort": 7051,
+                    "sshPort": 22,
+                    "username": "root",
+                    "password": "ehl1234",
+                    "isInstallExplorer": true
+                }
+            ]
+        },
+        {
+            "name": "Orderer",
+            "domain": "orderer.example.com",
+            "userNum": 1,
+            "peers": [
+                {
+                    "isOrderer": true,
+                    "ip": "172.38.50.210",
+                    "peerPort": 7050,
+                    "sshPort": 22,
+                    "username": "root",
+                    "password": "ehl1234"
+                }
+            ]
+        }
+    ]
+}

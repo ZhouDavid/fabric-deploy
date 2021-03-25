@@ -1,0 +1,44 @@
+Profiles:
+  GenesisChannel:
+    Orderer:
+      OrdererType: ""
+      Addresses: []
+      BatchTimeout: 2s
+      BatchSize:
+        MaxMessageCount: 10
+        AbsoluteMaxBytes: 99 MB
+        PreferredMaxBytes: 512 KB
+      EtcdRaft:
+        Consenters: []
+      Organizations: []
+      MaxChannels: 10
+      Capabilities:
+        V2_0: true
+      Policies:
+        Admins:
+          Type: ImplicitMeta
+          Rule: MAJORITY Admins
+        BlockValidation:
+          Type: ImplicitMeta
+          Rule: ANY Writers
+        Readers:
+          Type: ImplicitMeta
+          Rule: ANY Readers
+        Writers:
+          Type: ImplicitMeta
+          Rule: ANY Writers
+    Consortiums:
+      SampleConsortium:
+        Organizations: []
+    Capabilities:
+      V2_0: true
+    Policies:
+      Admins:
+        Type: ImplicitMeta
+        Rule: MAJORITY Admins
+      Readers:
+        Type: ImplicitMeta
+        Rule: ANY Readers
+      Writers:
+        Type: ImplicitMeta
+        Rule: ANY Writers

@@ -1,0 +1,2 @@
+peer0.org1.example.com 172.38.50.211 7051,22 root ehl1234 peer true Org1MSP org1.example.com
+orderer0.orderer.example.com 172.38.50.210 7050,22 root ehl1234 orderer false OrdererMSP orderer.example.com
