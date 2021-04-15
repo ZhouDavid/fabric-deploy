@@ -49,7 +49,7 @@ func runInstallChaincode() {
 		os.Exit(1)
 	}
 
-	chaincodeRemotePath := filepath.Join("chaincode","go", filepath.Base(chaincodeLocalPath))	
+	chaincodeRemotePath := filepath.Join(targetPath, "chaincode","go", filepath.Base(chaincodeLocalPath))	
 	fmt.Println("Chaincode remote path: ", chaincodeRemotePath)
 	ordererAddress := ipMap.GetOrderer().GetHostDomainIP()
 	for _,host:=range hosts{
@@ -69,7 +69,8 @@ func runInstallChaincode() {
 		scp(h.UserName, h.Password, h.GetAddress(), chaincodeLocalPath, chaincodeRemotePath, false)
 		// Install chaincode remotely
 		peerAddress := h.GetHostDomainIP()
-		installCmd := getChaincodeInstallCmd("cli", chaincodeRemotePath, peerAddress,ordererAddress)
+		chaincodePathInContainer := filepath.Join("chaincode","go", filepath.Base(chaincodeLocalPath))	
+		installCmd := getChaincodeInstallCmd("cli", chaincodePathInContainer, peerAddress,ordererAddress)
 		fmt.Println(installCmd)
 		if stdout, err:=utils.RunCommand(client, installCmd, true);err!=nil{
 			logrus.Errorf("Fail to execute chaincode install command, stdout:%s, error:%v\n", stdout.String(), err)

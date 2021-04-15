@@ -1,5 +1,5 @@
 {
-    "ordererType": "etcdedraft",
+    "ordererType": "etcdraft",
     "orgs": [
         {
             "name": "Org1",

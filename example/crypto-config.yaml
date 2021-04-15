@@ -1,0 +1,32 @@
+OrdererOrgs:
+- Name: Orderer
+  Domain: orderer
+  CA:
+    Country: CN
+    Province: GuangDong
+    Locality: GuangZhou
+  Template:
+    Count: 1
+PeerOrgs:
+- Name: Org1
+  Domain: org1
+  CA:
+    Country: CN
+    Province: GuangDong
+    Locality: GuangZhou
+  Template:
+    Count: 2
+  Users:
+    Count: 1
+  EnableNodeOUs: true
+- Name: Org2
+  Domain: org2
+  CA:
+    Country: CN
+    Province: GuangDong
+    Locality: GuangZhou
+  Template:
+    Count: 2
+  Users:
+    Count: 1
+  EnableNodeOUs: true

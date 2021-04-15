@@ -68,13 +68,9 @@ func runCreateChannel() {
 		if err != nil {
 			os.Exit(1)
 		}
-		clientIP, _ := utils.GetClientIp()
 		for _, value := range ipMap {
-			if clientIP != value.IP {
-				fmt.Printf("Scp %s to %s...\n", channelTxOutputFilename, value.Domain)
-				scp(value.UserName, value.Password, value.GetAddress(), channelTxOutputFilename, filepath.Join(targetPath, "channel-artifacts"), true)
-				//scp(value.UserName, value.Password, value.GetAddress(), filepath.Join(targetPath, "shell"), targetPath, false)
-			}
+			fmt.Printf("Scp %s to %s...\n", channelTxOutputFilename, value.Domain)
+			scp(value.UserName, value.Password, value.GetAddress(), channelTxOutputFilename, filepath.Join(targetPath, "channel-artifacts"), true)
 		}
 	}
 
@@ -84,7 +80,7 @@ func runCreateChannel() {
 
 	// Execute createChannel.sh at peer0 of first org
 	targetPeer,_ := ipMap.GetPeerFromOrg(orgNames[0])
-	shellPath, _ := filepath.Abs(path.Join(outputPath, "shell", "peer", "createChannel.sh"))
+	shellPath, _ := filepath.Abs(path.Join(targetPath, "shell", "peer", "createChannel.sh"))
 	channelCreateCmd := fmt.Sprintf("%s %s %s %s %s", shellPath, ordererAddress, orderer.Domain, orderer.OrgDomain, channelName)
 
 	fmt.Printf("Executing create channel command at %s \n", targetPeer.Domain)
@@ -101,7 +97,7 @@ func runCreateChannel() {
 	}
 
 	// Execute joinChannel.sh at peer0 of each channel org
-	shellPath, _ = filepath.Abs(path.Join(outputPath, "shell", "peer", "joinChannel.sh"))
+	shellPath, _ = filepath.Abs(path.Join(targetPath, "shell", "peer", "joinChannel.sh"))
 
 	for _, orgName := range orgNames {
 		targetPeer,err:= ipMap.GetPeerFromOrg(orgName)

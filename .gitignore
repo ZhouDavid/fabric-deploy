@@ -1,10 +1,9 @@
 .vscode
-fabricNetwork/target/env
-fabricNetwork/target/*
-test-network/bin/*
 *.tar.gz
-fabricNetwork/env/lib/*
-fabricNetwork/env/images/*
-fabricNetwork/env/fabric_bin/*
 fabricNetwork/build.sh
 vendor/
+/env/
+*.exe
+fabricNetwork/env/*
+!fabricNetwork/env/shell
+fabricNetwork/target

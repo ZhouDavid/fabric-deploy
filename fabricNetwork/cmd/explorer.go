@@ -62,7 +62,7 @@ func init() {
 	// explorerCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 	explorerCmd.Flags().StringVar(&explorerWorkDir, "dir", "test-network", "")
 	explorerCmd.Flags().StringVar(&explorerDPath, "dpath", "", "目标位置")
-	explorerCmd.Flags().BoolVar(&isPreInstall, "preInstall", false, "")
+	explorerCmd.Flags().BoolVar(&isPreInstall, "preInstall", true, "")
 	explorerCmd.MarkFlagRequired("dir")
 }
 func check() {
@@ -100,7 +100,7 @@ func runRunExplorer() {
 	//docker-compose n
 	// var hosts = make([]string, 0)
 	// hosts = append(hosts, entry.Domain+":"+entry.IP)
-	explorerContent := config.NewExplorerDockerComposeService(ips.GetAllDomainIP(), filepath.Join(exportWorkDirAbs, "organizations"))
+	explorerContent := config.NewExplorerDockerComposeService(ips.GetAllDomainIP(), filepath.Join("../../", "organizations"))
 
 	dockerComposePath := filepath.Join(exportWorkDirAbs, "explorer", "docker")
 	os.MkdirAll(dockerComposePath, os.ModePerm)
@@ -111,7 +111,7 @@ func runRunExplorer() {
 	clientIP, err := utils.GetClientIp()
 	if isPreInstall {
 		if clientIP != entry.IP {
-			//sccp
+			//scp
 
 			if err := CheckScp(); err != nil {
 				fmt.Println(err)

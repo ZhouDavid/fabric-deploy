@@ -5,34 +5,36 @@ services:
       explorerdb.mynetwork.com:
         condition: service_healthy
     environment:
-      - DATABASE_HOST=explorerdb.mynetwork.com
-      - DATABASE_DATABASE=fabricexplorer
-      - DATABASE_USERNAME=hppoc
-      - DATABASE_PASSWD=password
-      - LOG_LEVEL_APP=debug
-      - LOG_LEVEL_DB=debug
-      - LOG_LEVEL_CONSOLE=info
-      - LOG_CONSOLE_STDOUT=true
-      - DISCOVERY_AS_LOCALHOST=false
+    - DATABASE_HOST=explorerdb.mynetwork.com
+    - DATABASE_DATABASE=fabricexplorer
+    - DATABASE_USERNAME=hppoc
+    - DATABASE_PASSWD=password
+    - LOG_LEVEL_APP=debug
+    - LOG_LEVEL_DB=debug
+    - LOG_LEVEL_CONSOLE=info
+    - LOG_CONSOLE_STDOUT=true
+    - DISCOVERY_AS_LOCALHOST=false
     extra_hosts:
-      - peer0.org1.example.com:172.38.50.211
+    - peer0.org1.example.com:172.38.50.211
+    - orderer0.orderer.example.com:172.38.50.210
     hostname: explorer.mynetwork.com
     image: hyperledger/explorer:1.1.4
     ports:
-      - 8080:8080
+    - 8080:8080
     volumes:
-      - ../config.json:/opt/explorer/app/platform/fabric/config.json
-      - ../connection-profile:/opt/explorer/app/platform/fabric/connection-profile
-      - walletstore:/opt/explorer/wallet
-      - ../test-network/organizations:/tmp/crypto
+    - ../config.json:/opt/explorer/app/platform/fabric/config.json
+    - ../connection-profile:/opt/explorer/app/platform/fabric/connection-profile
+    - walletstore:/opt/explorer/wallet
+    - ..\..\organizations:/tmp/crypto
   explorerdb.mynetwork.com:
     container_name: explorerdb.mynetwork.com
     environment:
-      - DATABASE_DATABASE=fabricexplorer
-      - DATABASE_USERNAME=hppoc
-      - DATABASE_PASSWORD=password
+    - DATABASE_DATABASE=fabricexplorer
+    - DATABASE_USERNAME=hppoc
+    - DATABASE_PASSWORD=password
     extra_hosts:
-      - peer0.org1.example.com:172.38.50.211
+    - peer0.org1.example.com:172.38.50.211
+    - orderer0.orderer.example.com:172.38.50.210
     healthcheck:
       interval: 30s
       retries: 5
@@ -41,7 +43,7 @@ services:
     hostname: explorerdb.mynetwork.com
     image: hyperledger/explorer-db:1.1.4
     volumes:
-      - pgdata:/var/lib/postgresql/data
+    - pgdata:/var/lib/postgresql/data
 version: "2.1"
 volumes:
   pgdata: null
